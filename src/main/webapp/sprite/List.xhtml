@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSpriteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSpriteEmpty}" rendered="#{spriteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{spriteController.items.rowCount > 0}">
+                    <h:outputText value="#{spriteController.pagination.pageFirstItem + 1}..#{spriteController.pagination.pageLastItem + 1}/#{spriteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{spriteController.previous}" value="#{bundle.Previous} #{spriteController.pagination.pageSize}" rendered="#{spriteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{spriteController.next}" value="#{bundle.Next} #{spriteController.pagination.pageSize}" rendered="#{spriteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable id="thetable" value="#{spriteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpriteTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpriteTitle_x}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.x}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpriteTitle_y}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.y}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpriteTitle_xSpeed}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.xSpeed}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSpriteTitle_ySpeed}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ySpeed}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{spriteController.prepareView}" value="#{bundle.ListSpriteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{spriteController.prepareEdit}" value="#{bundle.ListSpriteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{spriteController.destroy}" value="#{bundle.ListSpriteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{spriteController.prepareCreate}" value="#{bundle.ListSpriteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSpriteIndexLink}"/>
+            </h:form>
+            <!--Javascript code-->
+            <br />
+
+                        <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+
+                        </canvas>
+
+                        <script>
+
+                                // get a reference to the canvas element
+
+                                var c = document.getElementById("myCanvas");
+
+                                var ctx = c.getContext("2d");
+
+
+                                // get a reference to the table of data
+
+                                var table = document.getElementById("j_idt11:thetable");
+
+
+                                // set the X and Y column indexes by searching the strings in the header row 0
+
+                                for (var j = 0, col; col = table.rows[0].cells[j]; j++) {
+
+                                        if (col.innerHTML == 'X') {
+
+                                                var Xindex = j;
+
+                                        }
+
+                                        if (col.innerHTML == 'Y') {
+
+                                                var Yindex = j;
+
+                                        }
+
+                                }
+
+
+                                // loop through the non-header rows, and draw a circle at X and Y
+
+                                for (var i = 1, row; row = table.rows[i]; i++) {
+
+                                        var x = row.cells[Xindex].innerHTML.valueOf();
+
+                                        var y = row.cells[Yindex].innerHTML.valueOf();
+
+                                        ctx.beginPath();
+
+                                        ctx.arc(x, y, 5, 0, 2 * Math.PI);
+
+                                        ctx.stroke();
+
+                                }
+
+                        </script>
+        </ui:define>
+    </ui:composition>
+
+</html>
