@@ -6,7 +6,7 @@
 
 package com.mycompany.spritehoang.facade;
 
-import cst8218.do000075.entity.Sprite;
+import cst8218.assignment2.entity.Sprite;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

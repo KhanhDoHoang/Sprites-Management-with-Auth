@@ -3,9 +3,9 @@
  * @author Hoang Do
  * Purpose: Talk to the databases
  */
-package cst8218.do000075.game;
+package cst8218.assignment2.game;
 
-import cst8218.do000075.entity.Sprite;
+import cst8218.assignment2.entity.Sprite;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

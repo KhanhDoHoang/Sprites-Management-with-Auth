@@ -5,7 +5,7 @@
  */
 package com.mycompany.spritehoang;
 
-import cst8218.do000075.entity.Sprite;
+import cst8218.assignment2.entity.Sprite;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

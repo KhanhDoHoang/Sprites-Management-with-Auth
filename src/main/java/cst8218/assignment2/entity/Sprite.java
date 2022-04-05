@@ -3,7 +3,7 @@
  * @author Hoang Do
  * @version 1.1
  */
-package cst8218.do000075.entity;
+package cst8218.assignment2.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

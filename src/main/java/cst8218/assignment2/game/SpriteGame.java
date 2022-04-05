@@ -3,9 +3,9 @@
  * @author Khanh Do
  * Purpose: This works likely as an ejb to gameSession
  */
-package cst8218.do000075.game;
+package cst8218.assignment2.game;
 
-import cst8218.do000075.entity.Sprite;
+import cst8218.assignment2.entity.Sprite;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
