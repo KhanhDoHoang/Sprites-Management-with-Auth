@@ -10,6 +10,8 @@ import cst8218.assignment2.entity.Sprite;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,7 +26,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
+@DeclareRoles({"Admin", "Regular"})
+@RolesAllowed("Regular")
 @Stateless
 @Path("cst8218.entity.sprite")
 public class SpriteFacadeREST extends AbstractFacade<Sprite> {
@@ -47,6 +50,7 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
      * @param newSprite
      * @return
      */
+    @RolesAllowed("Admin")
     @POST
     @Path("/")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -78,6 +82,7 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
         return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
     }
     
+    @RolesAllowed("Admin")
     @PUT
     @Path("/")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -107,6 +112,7 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
      * @param newSprite
      * @return
      */
+    @RolesAllowed("Admin")
     @POST
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -135,6 +141,7 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
      * @param newSprite
      * @return
      */
+    @RolesAllowed("Admin")
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -161,6 +168,7 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
      * @param id
      * @return
      */
+    @RolesAllowed("Admin")
     @DELETE
     @Path("{id}")
     public Response remove(@PathParam("id") Long id) {

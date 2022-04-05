@@ -16,13 +16,14 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{appUser.EditAppUserLabel_userId}" for="userId" />
-                    <h:inputText id="userId" value="#{appUserController.selected.userId}" title="#{appUser.EditAppUserTitle_userId}" />
+                    <h:inputText required="true" id="userId" value="#{appUserController.selected.userId}" title="#{appUser.EditAppUserTitle_userId}" />
+                    
                     <h:outputLabel value="#{appUser.EditAppUserLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{appUserController.selected.password}" title="#{appUser.EditAppUserTitle_password}" />
+                    <h:inputText required="true" id="password" value="#{appUserController.selected.password}" title="#{appUser.EditAppUserTitle_password}" />
+                    
                     <h:outputLabel value="#{appUser.EditAppUserLabel_groupname}" for="groupname" />
-                    <h:inputText id="groupname" value="#{appUserController.selected.groupname}" title="#{appUser.EditAppUserTitle_groupname}" />
-                    <h:outputLabel value="#{appUser.EditAppUserLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{appUserController.selected.id}" title="#{appUser.EditAppUserTitle_id}" />
+                    <h:inputText required="true" id="groupname" value="#{appUserController.selected.groupname}" title="#{appUser.EditAppUserTitle_groupname}" />
+                   
                 </h:panelGrid>
                 <h:commandLink action="#{appUserController.update}" value="#{appUser.EditAppUserSaveLink}"/>
                 <br />
