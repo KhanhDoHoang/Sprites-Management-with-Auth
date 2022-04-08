@@ -5,12 +5,11 @@
  */
 package facade;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
+import com.mycompany.spritehoang.facade.SpriteFacadeREST;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -18,44 +17,79 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class SpriteFacadeRESTJUnitTest {
     
-    public SpriteFacadeRESTJUnitTest() {
-    }
-
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
+    private SpriteFacadeREST spriteFacade;
     
-    @BeforeAll
-    public static void setUpClassBefore() {
-    }
-    
-    @AfterAll
-    public static void tearDownClassAfterAll() {
-    }
-    
+//    public SpriteFacadeRESTJUnitTest() {
+//    }
+
     @BeforeEach
-    public void setUpBeforeEach() {
-    }
-    
-    @AfterEach
-    public void tearDownAfterEach() {
+    public void setUp() throws Exception {
+        spriteFacade = new SpriteFacadeREST();
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+     @Test
+     public void testSpritesAreFound() {
+         //Mockito
+     }
+     
+     @Test
+     public void testSpriteIsFound() {
+         
+     }
+    
+     @Test
+     public void testSpriteIsNotFound() {
+         
+     }
+    
+    
+     @Test
+     public void testCreateNewValidSprite() {
+
+     }
+     
+     @Test
+     public void testCreateNewInvalidSprite() {
+
+     }
+     
+     @Test
+     public void testEditValidSpriteforPost() {
+
+     }
+     
+     @Test
+     public void testEditInvalidSpriteWithMismatchedIdforPost() {
+
+     }
+     
+     @Test
+     public void testEditInvalidSpriteWithUnfoundIdforPost() {
+
+     }
+     
+     @Test
+     public void testEditInvalidSpriteWithNegativeXforPost() {
+
+     }
+     
+     @Test
+     public void testEditInvalidSpriteWithNegativeYforPost() {
+
+     }
+     
+     @Test
+     public void testEditValidSpriteforPut() {
+
+     }
+     
+     @Test
+     public void testValidSpriteRemoval() {
+
+     }
+     
+     @Test
+     public void testInvalidSpriteRemoval() {
+
+     }
 }
