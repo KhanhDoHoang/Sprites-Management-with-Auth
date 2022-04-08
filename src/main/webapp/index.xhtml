@@ -1,17 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+            <h:selectOneMenu value="#{spriteController.language}" onchange="submit()">
+                <f:selectItem itemValue="en" itemLabel="English" />
+                <f:selectItem itemValue="vi" itemLabel="Vietnamese" />
+            </h:selectOneMenu>
+        </h:form>
+        #{appUser.WelcomeMessage}
         <br />
-        <h:link outcome="/sprite/List" value="Show All Sprite Items"/>
+        <h:link outcome="/sprite/List" value="#{bundle.CreateSpriteShowAllLink}"/>
         <br />
-        <h:link outcome="/appUser/List" value="Show All AppUser Items"/>
+        <h:link outcome="/appUser/List" value="#{appUser.CreateAppUserShowAllLink}"/>
     </h:body>
 
 
