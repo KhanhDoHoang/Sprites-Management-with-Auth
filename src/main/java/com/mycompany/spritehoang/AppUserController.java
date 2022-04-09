@@ -1,18 +1,11 @@
-/**
- * This is a sprite controller on the presentation tier
- * @author Hoang Do
- * @version 1.0
- */
 package com.mycompany.spritehoang;
 
-import cst8218.assignment2.entity.Sprite;
-import com.mycompany.spritehoang.presentation.util.JsfUtil;
-import com.mycompany.spritehoang.presentation.util.PaginationHelper;
+import cst8218.assignment2.entity.AppUser;
+import com.mycompany.spritehoang.util.JsfUtil;
+import com.mycompany.spritehoang.util.PaginationHelper;
 
 import java.io.Serializable;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -24,47 +17,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("spriteController")
+@Named("appUserController")
 @SessionScoped
-public class SpriteController implements Serializable {
+public class AppUserController implements Serializable {
 
-    private Sprite current;
+    private AppUser current;
     private DataModel items = null;
     @EJB
-    private com.mycompany.spritehoang.SpriteFacade ejbFacade;
+    private com.mycompany.spritehoang.AppUserFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    private Locale locale;
 
-    public SpriteController() {
-    }
-    
-    @PostConstruct
-    public void init() {
-        locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
-    }
-    public Locale getLocale() {
-        return locale;
-    }
-    public String getLanguage() {
-        return locale.getLanguage();
-    }
-    public void setLanguage(String language) {
-        locale = new Locale(language);
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+    public AppUserController() {
     }
 
-    
-
-    public Sprite getSelected() {
+    public AppUser getSelected() {
         if (current == null) {
-            current = new Sprite();
+            current = new AppUser();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private SpriteFacade getFacade() {
+    private AppUserFacade getFacade() {
         return ejbFacade;
     }
 
@@ -92,13 +67,13 @@ public class SpriteController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Sprite) getItems().getRowData();
+        current = (AppUser) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Sprite();
+        current = new AppUser();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -106,16 +81,16 @@ public class SpriteController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SpriteCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/AppUser").getString("AppUserCreated"));
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/AppUser").getString("PersistenceErrorOccured"));
             return null;
         }
     }
 
     public String prepareEdit() {
-        current = (Sprite) getItems().getRowData();
+        current = (AppUser) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -123,16 +98,16 @@ public class SpriteController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SpriteUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/AppUser").getString("AppUserUpdated"));
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/AppUser").getString("PersistenceErrorOccured"));
             return null;
         }
     }
 
     public String destroy() {
-        current = (Sprite) getItems().getRowData();
+        current = (AppUser) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -156,9 +131,9 @@ public class SpriteController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SpriteDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/AppUser").getString("AppUserDeleted"));
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/AppUser").getString("PersistenceErrorOccured"));
         }
     }
 
@@ -212,21 +187,21 @@ public class SpriteController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Sprite getSprite(java.lang.Long id) {
+    public AppUser getAppUser(java.lang.Long id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Sprite.class)
-    public static class SpriteControllerConverter implements Converter {
+    @FacesConverter(forClass = AppUser.class)
+    public static class AppUserControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            SpriteController controller = (SpriteController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "spriteController");
-            return controller.getSprite(getKey(value));
+            AppUserController controller = (AppUserController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "appUserController");
+            return controller.getAppUser(getKey(value));
         }
 
         java.lang.Long getKey(String value) {
@@ -246,11 +221,11 @@ public class SpriteController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Sprite) {
-                Sprite o = (Sprite) object;
+            if (object instanceof AppUser) {
+                AppUser o = (AppUser) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Sprite.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + AppUser.class.getName());
             }
         }
 

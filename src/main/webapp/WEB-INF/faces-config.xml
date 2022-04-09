@@ -28,5 +28,14 @@
             <base-name>/Bundle</base-name>
             <var>bundle</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/AppUser</base-name>
+            <var>appUser</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>vi</supported-locale>
+        </locale-config>
+
     </application>
 </faces-config>
