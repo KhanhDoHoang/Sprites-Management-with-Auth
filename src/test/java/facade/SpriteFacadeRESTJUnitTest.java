@@ -7,18 +7,24 @@ package facade;
 
 import com.mycompany.spritehoang.facade.SpriteFacadeREST;
 import cst8218.assignment2.entity.Sprite;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.core.Response;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
@@ -49,7 +55,7 @@ public class SpriteFacadeRESTJUnitTest {
     private SpriteFacadeREST spriteFacade;
     
 
-    @BeforeEach
+    @Before
     public void setUp() throws Exception {
         spriteFacade = new SpriteFacadeREST();
         spriteFacade.setEntityManager(em);
@@ -95,7 +101,8 @@ public class SpriteFacadeRESTJUnitTest {
         Response responseTest = spriteFacade.createNewSprite(newSprite);
         Sprite updatedSprite = (Sprite) responseTest.getEntity();
         
-        assertEquals(10, updatedSprite.getX());
+        Integer expectedX = 10;
+        assertEquals(expectedX, (updatedSprite.getX()));
         assertEquals(
           (Response.Status.OK).getStatusCode(), responseTest.getStatus());
     }
@@ -165,7 +172,8 @@ public class SpriteFacadeRESTJUnitTest {
         Response responseTest = spriteFacade.editWithPost(1L, newSprite);
         Sprite updatedSprite = (Sprite) responseTest.getEntity();
         
-        assertEquals(10, updatedSprite.getX());
+        Integer expectedX = 10;
+        assertEquals(expectedX, (updatedSprite.getX()));
         assertEquals(
           (Response.Status.OK).getStatusCode(), responseTest.getStatus());
     }
@@ -226,7 +234,8 @@ public class SpriteFacadeRESTJUnitTest {
         Sprite updatedSprite = (Sprite) responseTest.getEntity();
         
         verify(em, times(1)).merge(any());
-        assertEquals(10, updatedSprite.getX());
+        Integer expectedX = 10;
+        assertEquals(expectedX, (updatedSprite.getX()));
         assertEquals(
           (Response.Status.OK).getStatusCode(), responseTest.getStatus());
     }

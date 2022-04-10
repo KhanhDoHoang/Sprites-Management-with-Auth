@@ -7,6 +7,7 @@ package facade;
 
 import cst8218.assignment2.entity.Sprite;
 import cst8218.assignment2.game.GameSession;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,14 +15,18 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+//import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.runner.RunWith;
 import static org.mockito.Matchers.any;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -54,7 +59,7 @@ public class GameSessionTest {
         this.entityClass = entityClass;
     }
     
-    @BeforeEach
+    @Before
     public void setUp() throws Exception {
         gameSession = new GameSession();
         gameSession.setEntityManager(em);

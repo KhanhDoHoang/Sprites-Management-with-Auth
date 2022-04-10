@@ -6,22 +6,22 @@
 package model;
 
 import cst8218.assignment2.entity.Sprite;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *
  * @author Khanh Do
  */
+@RunWith(MockitoJUnitRunner.class)
 public class SpriteTest {
-    
-//    public SpriteTest() {
-//    }
     
     Sprite sprite;
     
-    @BeforeEach
+    @Before
     public void setUp() throws Exception {
         sprite = new Sprite();
     }
