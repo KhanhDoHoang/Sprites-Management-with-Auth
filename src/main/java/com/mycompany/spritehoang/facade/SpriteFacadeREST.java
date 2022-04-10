@@ -8,6 +8,7 @@ package com.mycompany.spritehoang.facade;
 
 import cst8218.assignment2.entity.Sprite;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.security.DeclareRoles;
@@ -38,6 +39,10 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
 
     public SpriteFacadeREST() {
         super(Sprite.class);
+    }
+    
+    public void setEntityManager(EntityManager em){
+        this.em = em;
     }
     
     @Override
@@ -119,6 +124,10 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
         Response isSpriteValid = isValidSprite(newSprite);
         if(isSpriteValid != null){
             return isSpriteValid;
+        }
+        
+        if(!Objects.equals(newSprite.getId(), id)){
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
         
         //update the old value with non-null new sprite
