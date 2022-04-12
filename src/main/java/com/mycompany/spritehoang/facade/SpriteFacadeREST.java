@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@DeclareRoles({"Admin", "RestGroup"})
+@DeclareRoles({"Admin", "RestGroup", "Other"})
 @RolesAllowed({"Admin", "RestGroup"})
 @Stateless
 @Path("cst8218.entity.sprite")
