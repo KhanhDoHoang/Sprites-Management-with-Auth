@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package facade;
 
 import com.mycompany.spritehoang.facade.SpriteFacadeREST;
@@ -17,10 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.core.Response;
 
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -31,8 +22,9 @@ import static org.mockito.Mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- *
- * @author Khanh Do
+ * SpriteFacadeRESTJUnitTest class 
+ * Testing all methods within the rest class with invalid and valid expectations
+ * @author Khanh Do, Minh Duc
  */
 @RunWith(MockitoJUnitRunner.class)
 public class SpriteFacadeRESTJUnitTest {
@@ -54,7 +46,10 @@ public class SpriteFacadeRESTJUnitTest {
     
     private SpriteFacadeREST spriteFacade;
     
-
+    /**
+     * Setting the inject mock object and mock all the query builder used for later
+     * @throws Exception 
+     */
     @Before
     public void setUp() throws Exception {
         spriteFacade = new SpriteFacadeREST();
@@ -72,7 +67,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
     
     /**
-     * Create
+     * Testing valid Sprite Created without Id
+     * This will not provide id and the new sprite will be created
+     * The expectation will be Status Created with persist method got called 1 time
      */
     @Test
     public void testCreateNewValidSpriteWithoutId() {
@@ -88,7 +85,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
     
     /**
-     * Create
+     * Testing valid Sprite Created with Id
+     * This will provide id and will be checked to see if existed or not
+     * The expectation will be sprite existed and the new value will overwrite old values
      */
     @Test
     public void testCreateNewValidSpriteWithId() {
@@ -109,6 +108,7 @@ public class SpriteFacadeRESTJUnitTest {
     
     /**
      * Create invalid sprite with null sprite
+     * The expectation will be BAD REQUEST status return
      */
     @Test
     public void testCreateNewInvalidNullSprite() {
@@ -119,7 +119,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
     
     /**
-     * Create invalid sprite with null sprite
+     * Create invalid sprite with negative x
+     * This will be caught in validSpriteCheck, because of negative x
+     * The expectation will be BAD REQUEST status
      */
     @Test
     public void testCreateNewInvalidSpriteWithNegativeX() {
@@ -133,6 +135,7 @@ public class SpriteFacadeRESTJUnitTest {
     
     /**
      * Test edit on root with 405 Error or METHOD NOT ALLOWED
+     * 
      */
     @Test
     public void testEditOnRoot(){
@@ -142,7 +145,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
 
     /**
-     * Test findAll
+     * Test findAll method with all sprites are found
+     * The expectation will be the mock Sprite list is equal to
+     * the sprite list got from calling the method
      */
     @Test
     public void testSpritesAreFound() {
@@ -159,7 +164,10 @@ public class SpriteFacadeRESTJUnitTest {
     }
 
     /**
-     * Test Post edit
+     * Test valid Post edit
+     * Provided with newSprite with ID, the existed sprite will be called
+     * Used new value from new Sprite to overwrite old Sprite values
+     * The expectation will be OK status with the new X from new Sprite overwrite the old one
      */
     @Test
     public void testEditValidSpriteforPost() {
@@ -179,7 +187,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
 
     /**
-     * Test Post edit
+     * Test invalid Post edit with mismatched id
+     * The id will be not the same between body and url 
+     * The expectation will be BAD REQUEST status
      */
     @Test
     public void testEditInvalidSpriteWithMismatchedIdforPost() {
@@ -191,10 +201,12 @@ public class SpriteFacadeRESTJUnitTest {
     }
 
     /**
-     * Test Post edit
+     * Test invalid Post edit with not found id
+     * With mock data is the body from request and the id is not existed within databases
+     * The expectation will be NOT FOUND
      */
     @Test
-    public void testEditInvalidSpriteWithUnfoundIdforPost() {
+    public void testEditInvalidSpriteWithNotFoundIdforPost() {
         Sprite newSprite = setSprite(1L);
         
         when(em.find(any(), any())).thenReturn(null);
@@ -205,7 +217,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
 
     /**
-     * Test Post edit
+     * Test invalid Post edit with negative x
+     * Because of the negative x, the sprite is invalid to be save to db
+     * The expectation will be BAD REQUEST 
      */
     @Test
     public void testEditInvalidSpriteWithNegativeXforPost() {
@@ -218,7 +232,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
     
     /**
-     * Test Put edit
+     * Test valid Put edit
+     * Provided new Sprite with different x value compared to old Sprite
+     * The expectation will be x value will be overwritten and OK status return
      */
     @Test
     public void testEditValidSpriteforPut() {
@@ -241,7 +257,10 @@ public class SpriteFacadeRESTJUnitTest {
     }
 
     /**
-     * Test remove
+     * Test valid remove
+     * Provided with valid id, the existed Sprite will be found and delete
+     * The expectation is remove method within AbstractFacade got called
+     * and OK status return
      */
     @Test
     public void testValidSpriteRemoval() {
@@ -259,7 +278,8 @@ public class SpriteFacadeRESTJUnitTest {
     }
 
     /**
-     * Test remove
+     * Test invalid remove with not found id
+     * The expectation will be NOT FOUND
      */
     @Test
     public void testInvalidSpriteRemoval() {
@@ -273,7 +293,9 @@ public class SpriteFacadeRESTJUnitTest {
     
     
     /**
-     * Test find
+     * Test valid find method
+     * Provided with valid id and existed sprite will be found
+     * The expectation will be OK status return and mocked Sprite is equal to Sprite got called from method
      */
     @Test
     public void testSpriteIsFound() {
@@ -302,7 +324,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
     
     /**
-     * Test find range
+     * Test find range has content
+     * Provided with the list of 2 sprites
+     * The expectation will be OK status return
      */
     @Test
     public void testFindRangeHasContent(){
@@ -320,7 +344,9 @@ public class SpriteFacadeRESTJUnitTest {
     }
     
     /**
-     * Test find range
+     * Test find range without content
+     * Provided with no Sprite
+     * The expectation will be NO CONTENT status return
      */
     @Test
     public void testFindRangeHasNoContent(){
@@ -335,7 +361,10 @@ public class SpriteFacadeRESTJUnitTest {
     /**
     * Helper
     */
-    
+    /**
+     * Helper method to set up mocking for findRange test
+     * @param spriteList
+     */
     private void setupFindRange(List<Sprite> spriteList){
         int[] range = {0, 1};
                 
@@ -345,6 +374,11 @@ public class SpriteFacadeRESTJUnitTest {
         when(mockedTQ.getResultList()).thenReturn(spriteList);
     }
 
+    /**
+     * Helper method to set up sprite within the test
+     * @param id
+     * @return sprite
+     */
     private Sprite setSprite(Long id){
      Sprite sprite = new Sprite();
      if(id != null){

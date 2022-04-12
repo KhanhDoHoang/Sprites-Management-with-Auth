@@ -1,8 +1,4 @@
-/**
- * GameSession class
- * @author Hoang Do
- * Purpose: Talk to the databases, have methods to findAll, find, create, edit, remove
- */
+
 package cst8218.assignment2.game;
 
 import cst8218.assignment2.entity.Sprite;
@@ -15,6 +11,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+/**
+ * GameSession class
+ * @author Hoang Do, Minh Duc
+ * Purpose: Talk to the databases, have methods to findAll, find, create, edit, remove
+ * These methods will make a query within databases to get data that we ask for
+ */
 
 @Stateless
 public class GameSession {

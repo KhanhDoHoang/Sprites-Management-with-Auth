@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package facade;
 
 import cst8218.assignment2.entity.Sprite;
@@ -16,10 +11,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -32,8 +23,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
 /**
- *
- * @author Khanh Do
+ * GameSessiontest class tests all the methods within the class
+ * to check if it matches what expected 
+ * @author Khanh Do, Minh Duc
  */
 @RunWith(MockitoJUnitRunner.class)
 public class GameSessionTest {
@@ -59,6 +51,10 @@ public class GameSessionTest {
         this.entityClass = entityClass;
     }
     
+    /**
+     * Setting the inject mock object and mock all the query builder used for later
+     * @throws Exception 
+     */
     @Before
     public void setUp() throws Exception {
         gameSession = new GameSession();
@@ -77,6 +73,10 @@ public class GameSessionTest {
         
     }
     
+    /**
+     * Testing valid findAll with 2 sprite mocks
+     * expected to see Sprite list got from calling GameSession to match with mock list
+     */
     @Test
     public void testSpritesAreFound(){
         List<Sprite> spriteList = new ArrayList<Sprite>(){{
@@ -89,6 +89,10 @@ public class GameSessionTest {
         assertEquals(sprites, spriteList);
     }
 
+    /**
+     * Testing valid create with
+     * expectation of the persist got called
+     */
     @Test
     public void testValidCreate() {
         Sprite sprite = setSprite(1L);     
@@ -98,6 +102,10 @@ public class GameSessionTest {
         verify(em, times(1)).persist(any());
     }
 
+    /**
+     * Testing valid edit with 
+     * expectation of merge method got called
+     */
     @Test
     public void testValidEdit() {
         Sprite sprite = setSprite(1L);     
@@ -107,6 +115,10 @@ public class GameSessionTest {
         verify(em, times(1)).merge(any());
     }
 
+    /**
+     * Testing valid remove with
+     * expectation of remove method got called
+     */
     @Test
     public void testValidRemove() {
         Sprite sprite = setSprite(1L);
@@ -119,6 +131,10 @@ public class GameSessionTest {
 
     }
 
+    /**
+     * Testing valid find method 
+     * with expectation of the found sprite is matched with mockd sprite
+     */
     @Test
     public void testSpriteIsFound() {
         Sprite sprite = setSprite(1L);
@@ -132,6 +148,11 @@ public class GameSessionTest {
     * Helper
     */
 
+    /**
+     * Helper method to set up sprite within the test
+     * @param id
+     * @return 
+     */
     private Sprite setSprite(Long id){
      Sprite sprite = new Sprite();
      sprite.setId(id);
