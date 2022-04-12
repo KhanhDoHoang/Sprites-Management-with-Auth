@@ -1,7 +1,7 @@
 /**
- *
+ * GameSession class
  * @author Hoang Do
- * Purpose: Talk to the databases
+ * Purpose: Talk to the databases, have methods to findAll, find, create, edit, remove
  */
 package cst8218.assignment2.game;
 

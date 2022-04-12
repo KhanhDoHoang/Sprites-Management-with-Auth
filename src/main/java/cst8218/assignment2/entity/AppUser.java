@@ -1,7 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This is a app user model, used for security authentication
+ * It contains 3 requirements fields userId, password and group
+ * @author Hoang Do
+ * @version 1.0
  */
 package cst8218.assignment2.entity;
 

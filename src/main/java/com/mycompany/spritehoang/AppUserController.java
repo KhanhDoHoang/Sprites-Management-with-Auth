@@ -1,3 +1,8 @@
+/**
+ * This is a app user controller on the presentation tier
+ * @author Hoang Do
+ * @version 1.0
+ */
 package com.mycompany.spritehoang;
 
 import cst8218.assignment2.entity.AppUser;
