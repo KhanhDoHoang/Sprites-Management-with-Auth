@@ -1,5 +1,6 @@
 /**
- * This is a sprite model
+ * This is a sprite model.
+ * It contains location x y, speed, and methods for moving, bouncing, updating and comparing 
  * @author Hoang Do
  * @version 1.1
  */
