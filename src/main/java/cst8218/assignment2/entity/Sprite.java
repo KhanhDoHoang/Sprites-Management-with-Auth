@@ -1,9 +1,3 @@
-/**
- * This is a sprite model.
- * It contains location x y, speed, and methods for moving, bouncing, updating and comparing 
- * @author Hoang Do
- * @version 1.1
- */
 package cst8218.assignment2.entity;
 
 import java.io.Serializable;
@@ -13,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * This is a sprite model.
+ * It contains location x y, speed, and methods for moving, bouncing, updating and comparing 
+ * @author Hoang Do, Minh Duc
+ * @version 1.1
+ */
 
 @Entity
 @XmlRootElement
@@ -88,6 +88,11 @@ public class Sprite implements Serializable {
         xSpeed = - xSpeed;
     }
     
+    /**
+     * Updating sprite and overwrite old data with new data, 
+     * this used for Post update
+     * @param oldSprite 
+     */
     public void updates(Sprite oldSprite){
         //oldSprite set values with new non-null values
         if(x != null){

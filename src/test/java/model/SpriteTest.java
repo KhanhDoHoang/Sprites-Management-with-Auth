@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import cst8218.assignment2.entity.Sprite;
@@ -11,11 +7,12 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-
-/**
- *
- * @author Khanh Do
+/*
+ * SpriteTest class is test cases for the Sprite class
+ * Author: Hoang Do, Minh Duc
+ * Version: 1.1
  */
+
 @RunWith(MockitoJUnitRunner.class)
 public class SpriteTest {
     
@@ -26,6 +23,9 @@ public class SpriteTest {
         sprite = new Sprite();
     }
     
+    /**
+     * Testing if the sprite has moved after calling move method
+     */
      @Test
      public void testMove() {
          Sprite currentSprite = setSprite();
@@ -38,6 +38,9 @@ public class SpriteTest {
          assertEquals(currentSprite, expectedSprite);
      }
      
+     /**
+      * Testing bounce top wall, this test the ySpeed if it's changed after calling method
+      */
      @Test
      public void testBounceTopWall() {
          Sprite currentSprite = setSprite();
@@ -49,6 +52,9 @@ public class SpriteTest {
          assertEquals(currentSprite, expectedSprite);
      }
      
+     /**
+      * Testing bounce bottom wall, this test ySpeed changed after hit bottom wall
+      */
      @Test
      public void testBounceBottomWall() {
          Sprite currentSprite = setSprite();
@@ -60,6 +66,9 @@ public class SpriteTest {
          assertEquals(currentSprite, expectedSprite);
      }
      
+     /**
+      * Testing bounce right wall, this test xSpeed changed after hit right wall
+      */
      @Test
      public void testBounceRightWall() {
          Sprite currentSprite = setSprite();
@@ -71,6 +80,9 @@ public class SpriteTest {
          assertEquals(currentSprite, expectedSprite);
      }
      
+     /**
+      * Testing bounce left wall, this test xSpeed changed after hit left wall
+      */
      @Test
      public void testBounceLeftWall() {
          Sprite currentSprite = setSprite();
@@ -82,6 +94,9 @@ public class SpriteTest {
          assertEquals(currentSprite, expectedSprite);
      }
      
+     /**
+      * Testing update method used for POST edit with the changed Y
+      */
      @Test
      public void testUpdateWithChangedY() {
          Sprite oldSprite = setSprite();
@@ -100,6 +115,10 @@ public class SpriteTest {
       * Helper method
       */
      
+     /**
+      * This is setup class for setting sprite within this class
+      * @return 
+      */
      private Sprite setSprite(){
          Sprite sprite = new Sprite();
          sprite.setId(1L);

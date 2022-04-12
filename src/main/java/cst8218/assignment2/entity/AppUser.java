@@ -1,9 +1,3 @@
-/**
- * This is a app user model, used for security authentication
- * It contains 3 requirements fields userId, password and group
- * @author Hoang Do
- * @version 1.0
- */
 package cst8218.assignment2.entity;
 
 import java.io.Serializable;
@@ -19,9 +13,12 @@ import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import javax.validation.constraints.NotNull;
 
 /**
- *
- * @author Khanh Do
+ * This is a app user model, used for security authentication
+ * It contains 3 requirements fields userId, password and group
+ * @author Hoang Do, Minh Duc
+ * @version 1.0
  */
+
 @Entity
 public class AppUser implements Serializable {
 

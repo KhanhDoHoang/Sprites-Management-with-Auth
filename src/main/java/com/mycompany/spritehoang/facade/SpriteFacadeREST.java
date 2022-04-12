@@ -27,7 +27,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@DeclareRoles({"Admin", "RestGroup"})
+/*
+ * SpriteFacadeREST class 
+ * Interact with Postman for rest api call and AbstractFacade to fullfil the request
+ * Author: Hoang Do, Minh Duc
+ */
+
+@DeclareRoles({"Admin", "RestGroup", "Other"})
 @RolesAllowed({"Admin", "RestGroup"})
 @Stateless
 @Path("cst8218.entity.sprite")
@@ -51,7 +57,10 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
     }
     
     /**
-     * Create a new Sprite with POST, if there comes with no id, create a new one, comes with an id, update the existing one
+     * Create a new Sprite with POST, 
+     * if there comes with no id, create a new one with new Id generated, 
+     * comes with an id, update the existing one with update method from Sprite class
+     * this will overwrite any new values got from the newSprite
      * @param newSprite
      * @return
      */
@@ -86,6 +95,11 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
         return Response.status(Response.Status.METHOD_NOT_ALLOWED).build();
     }
     
+    /**
+     * This will a catch method to block any edit on root 
+     * @param newSprite
+     * @return 
+     */
     @PUT
     @Path("/")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -100,6 +114,7 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
      * @Param: none
      * @return
      */
+    @RolesAllowed({"Admin", "RestGroup", "Other"})
     @GET
     @Path("/")
     @Override
@@ -110,7 +125,11 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
     }
     
     /**
-     * POST on a specific id should update the Sprite having that id with the new non-null information given by the Sprite in the body of the request
+     * POST on a specific id should update the Sprite 
+     * having that id with the new non-null information given
+     * by the Sprite in the body of the request
+     * The new Sprite value will overwrite the old ones
+     * And the old value will be kept is there is no change
      * @param id
      * @param newSprite
      * @return
@@ -142,7 +161,10 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
     }
     
     /**
-     * PUT on a specific id should replace the Sprite having that id with the Sprite in the body of the request.
+     * PUT on a specific id should replace the Sprite 
+     * having that id with the Sprite in the body of the request.
+     * The PUT update will like creating a new entire sprite body
+     * and overwrite the existing one, so if x is not provided in the request body it will be null
      * @param id
      * @param newSprite
      * @return
@@ -169,9 +191,11 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
     }
 
     /**
-     * Remove the sprite based on the id
+     * Remove the sprite based on the id, 
+     * will return two statuses depending on 
+     * if id with the sprite is found or not
      * @param id
-     * @return
+     * @return Response
      */
     @DELETE
     @Path("{id}")
@@ -187,7 +211,9 @@ public class SpriteFacadeREST extends AbstractFacade<Sprite> {
     }
 
     /**
-     * Find a specific sprite with id
+     * Find a specific sprite with id provided
+     * Will return two statuses depending on if 
+     * sprite with the provided id is found or not
      * @param id
      * @return
      */

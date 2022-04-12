@@ -1,8 +1,4 @@
-/**
- * This is a sprite controller on the presentation tier
- * @author Hoang Do
- * @version 1.0
- */
+
 package com.mycompany.spritehoang;
 
 import cst8218.assignment2.entity.Sprite;
@@ -23,6 +19,13 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+
+/**
+ * This is a sprite controller on the presentation tier
+ * this is also a controller where receive request to change languages
+ * @author Hoang Do, Minh Duc
+ * @version 1.0
+ */
 
 @Named("spriteController")
 @SessionScoped

@@ -1,8 +1,3 @@
-/**
- * This is a app user controller on the presentation tier
- * @author Hoang Do
- * @version 1.0
- */
 package com.mycompany.spritehoang;
 
 import cst8218.assignment2.entity.AppUser;
@@ -21,6 +16,14 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+
+/**
+ * This is a app user controller on the presentation tier
+ * this is called from the UI to process the request and will 
+ * interact with Facade to get data that UI wants
+ * @author Hoang Do, Minh Duc
+ * @version 1.0
+ */
 
 @Named("appUserController")
 @SessionScoped
