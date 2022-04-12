@@ -1,5 +1,5 @@
 /**
- *
+ * SpriteGame class contains sizes, a list of sprite and game session, haves method to bounce and go 
  * @author Khanh Do
  * Purpose: This works likely as an ejb to gameSession
  */

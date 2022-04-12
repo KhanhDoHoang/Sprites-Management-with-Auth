@@ -1,5 +1,5 @@
 /*
- * This is a sprite facade rest interface
+ * This is a sprite facade rest interface, it provides GET PUT POST DELETE methods
  * @author Hoang Do
  * @version 1.9
  */
